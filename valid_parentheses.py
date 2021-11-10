@@ -60,7 +60,7 @@ def sanitize_line(_line: str, _regex: str) -> str:
 
 
 # Validates line against provided symbol dictionary
-def validate_line(_line: str, _regex: str, _symbol_dict: Dict[str, str]) -> None:
+def validate_line(_line: str, _regex: str, _symbol_dict: Dict[list[int], str]) -> None:
     """
     :type _line: str
     :type _symbol_dict: Dict[str, str]
@@ -91,7 +91,7 @@ def validate_line(_line: str, _regex: str, _symbol_dict: Dict[str, str]) -> None
                 raise Exception("Submitted input contain non valid parentheses.")
 
 
-def validate_file(_file_path: str, _regex: str, _symbol_dict: Dict[str, str]) -> None:
+def validate_file(_file_path: str, _regex: str, _symbol_dict: Dict[list[int], str]) -> None:
     """
 
     :type _symbol_dict: Dict[str, str]
@@ -107,7 +107,7 @@ def validate_file(_file_path: str, _regex: str, _symbol_dict: Dict[str, str]) ->
         validate_line(line, _regex, _symbol_dict)
 
 
-def initialize_regex_and_symbols(_parentheses_symbol_param_arr: List) -> Tuple[str, Dict[str, str]]:
+def initialize_regex_and_symbols(_parentheses_symbol_param_arr: List) -> Tuple[str, Dict[list[int], str]]:
     """
 
     :type _parentheses_symbol_param_arr: List
@@ -149,7 +149,7 @@ if __name__ == '__main__':
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=textwrap.dedent(
             '''Example:
-            -s "{some text[ some (other)] text}" # scan line usig default symbol set
+            -s "{some text[ some (other)] text}" # scan line using default symbol set
             -s "{some text{ some other text}}" -l "{" -r "}" # scan line using custom symbol set
             -f "C:/Users/Username/Folder/file.txt" # scan file using default symbol set
             -f "C:/Users/Username/Folder/file.json" -l "{" -r "}" # scan file using custom symbol set'''))
